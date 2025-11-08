@@ -17,6 +17,8 @@ let keys = [
     { name: " ", x: 425, y: 540}
 ];
 
+let message = "";
+
 function setup() {
     createCanvas(600, 600);
     textAlign(CENTER, CENTER);
@@ -25,6 +27,7 @@ function setup() {
 function draw() {
     background(255);
     drawKeyboard();
+    text(message, width / 2, 200);
 }
 
 /**
@@ -40,3 +43,19 @@ function drawKeyboard() {
         text(k.name, k.x, k.y, KEY_WIDTH, KEY_WIDTH);
     }
 }
+
+function mouseClicked() {
+    for (let k of keys) {
+        if (k.name === " ") {
+            if (mouseX > k.x && mouseX < k.x + SPACE_BAR_WIDTH && mouseY > k.y && mouseY < k.y + KEY_WIDTH) {
+                message = message + k.name;
+            }
+        } else {
+            if (mouseX > k.x && mouseX < k.x + KEY_WIDTH && mouseY > k.y && mouseY < k.y + KEY_WIDTH) {
+                message = message + k.name;
+            }
+        }
+        
+    }
+}
+
